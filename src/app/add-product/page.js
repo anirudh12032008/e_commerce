@@ -1,8 +1,8 @@
 import FormSubmitButton from "@/components/FormSubmitButton";
 import { prisma } from "@/lib/db/prisma";
-// import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-// import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export const metadata = {
   title: "Add Product - Anizon",
@@ -11,11 +11,11 @@ export const metadata = {
 async function addProduct(formData) {
   "use server";
 
-  //   const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
-  //   if (!session) {
-  //     redirect("/api/auth/signin?callbackUrl=/add-product");
-  //   }
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/add-product");
+  }
 
   const name = formData.get("name")?.toString();
   const description = formData.get("description")?.toString();
@@ -34,11 +34,11 @@ async function addProduct(formData) {
 }
 
 export default async function AddProductPage() {
-  //   const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
-  //   if (!session) {
-  //     redirect("/api/auth/signin?callbackUrl=/add-product");
-  //   }
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/add-product");
+  }
 
   return (
     <div>
