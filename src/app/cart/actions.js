@@ -50,3 +50,16 @@ export async function setProductQuantity(productId, quantity) {
 
   revalidatePath("/cart");
 }
+
+export async function clearCart() {
+  const cart = await getCart();
+
+  if (cart) {
+    // Delete all related CartItem records for the cart
+    await prisma.cartItem.deleteMany({
+      where: { cartId: cart.id },
+    });
+
+    revalidatePath("/cart");
+  }
+}

@@ -30,7 +30,7 @@ async function addProduct(formData) {
     data: { name, description, imageUrl, price },
   });
 
-  redirect("/");
+  redirect("/add-product");
 }
 
 export default async function AddProductPage() {

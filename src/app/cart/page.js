@@ -2,6 +2,8 @@ import { getCart } from "@/lib/db/cart";
 import { formatPrice } from "@/lib/format";
 import CartEntry from "./CartEntry";
 import { setProductQuantity } from "./actions";
+import { clearCart } from "./actions";
+import ClearCart from "./ClearCart";
 
 export const metadata = {
   title: "Your Cart - Flowmazon",
@@ -9,6 +11,7 @@ export const metadata = {
 
 export default async function CartPage() {
   const cart = await getCart();
+  console.log(cart);
 
   return (
     <div>
@@ -25,7 +28,9 @@ export default async function CartPage() {
         <p className="mb-3 font-bold">
           Total: {formatPrice(cart?.subtotal || 0)}
         </p>
+
         <button className="btn-primary btn sm:w-[200px]">Checkout</button>
+        <ClearCart clearCart={clearCart} cart={cart} />
       </div>
     </div>
   );

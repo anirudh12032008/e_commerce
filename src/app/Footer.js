@@ -1,3 +1,6 @@
+// import { gsap } from "gsap";
+// console.log(gsap);
+// gsap.core.to(".test234", { opacity: 0, duration: 4, delay: 2 });
 export default function Footer() {
   return (
     <footer className="bg-neutral p-10 text-neutral-content">
