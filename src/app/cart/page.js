@@ -4,6 +4,7 @@ import CartEntry from "./CartEntry";
 import { setProductQuantity } from "./actions";
 import { clearCart } from "./actions";
 import ClearCart from "./ClearCart";
+import CheckOutButton from "./CheckOutButton";
 
 export const metadata = {
   title: "Your Cart - Flowmazon",
@@ -11,11 +12,10 @@ export const metadata = {
 
 export default async function CartPage() {
   const cart = await getCart();
-  console.log(cart);
 
   return (
     <div>
-      <h1 className="mb-6 text-3xl font-bold">Shopping Cart</h1>
+      <h1 className="mb-6 text-3xl font-bold">Shopping Cart      use 424242.... for card no. and any future date for card and any cvc</h1>
       {cart?.items.map((cartItem) => (
         <CartEntry
           cartItem={cartItem}
@@ -28,8 +28,7 @@ export default async function CartPage() {
         <p className="mb-3 font-bold">
           Total: {formatPrice(cart?.subtotal || 0)}
         </p>
-
-        <button className="btn-primary btn sm:w-[200px]">Checkout</button>
+        <CheckOutButton cart={cart} products={cart.items} />
         <ClearCart clearCart={clearCart} cart={cart} />
       </div>
     </div>
