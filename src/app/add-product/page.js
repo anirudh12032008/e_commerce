@@ -20,14 +20,16 @@ async function addProduct(formData) {
   const name = formData.get("name")?.toString();
   const description = formData.get("description")?.toString();
   const imageUrl = formData.get("imageUrl")?.toString();
+  const imageUrl2 = formData.get("imageUrl2")?.toString();
+  const imageUrl3 = formData.get("imageUrl3")?.toString();
   const price = Number(formData.get("price") || 0);
 
-  if (!name || !description || !imageUrl || !price) {
+  if (!name || !description || !imageUrl || !imageUrl2 || !imageUrl3 || !price) {
     throw Error("Missing required fields");
   }
 
   await prisma.product.create({
-    data: { name, description, imageUrl, price },
+    data: { name, description, imageUrl,imageUrl2, imageUrl3, price },
   });
 
   redirect("/add-product");
@@ -61,7 +63,21 @@ export default async function AddProductPage() {
           <input
             required
             name="imageUrl"
-            placeholder="Image URL"
+            placeholder="Image URL port"
+            type="url"
+            className="input-bordered input mb-3 w-full"
+          />
+          <input
+            required
+            name="imageUrl2"
+            placeholder="Image URL2 land"
+            type="url"
+            className="input-bordered input mb-3 w-full"
+          />
+          <input
+            required
+            name="imageUrl3"
+            placeholder="Image URL3 port"
             type="url"
             className="input-bordered input mb-3 w-full"
           />

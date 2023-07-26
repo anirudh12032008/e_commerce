@@ -11,7 +11,7 @@ export default function AddToCartButton({
   return (
     <div className="flex items-center gap-2">
       <button
-        className="btn-primary btn"
+        className=" text-white  btn hover:bg-gray-900 bg-gray-950"
         onClick={() => {
           setSuccess(false);
           startTransition(async () => {
