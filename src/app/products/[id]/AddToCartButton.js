@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 export default function AddToCartButton({
   productId,
   incrementProductQuantity,
+  className
 }) {
   const [isPending, startTransition] = useTransition();
   const [success, setSuccess] = useState(false);
