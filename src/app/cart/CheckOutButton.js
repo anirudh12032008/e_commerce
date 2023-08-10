@@ -20,6 +20,23 @@ export default function CheckOutButton({ cart, products }) {
     handleCheckout(products);
   }
 
+  
+
+   if (cart?.items.length == 0) {
+    return (
+      <>
+        
+      </>
+    );
+  } else if (typeof cart?.items == "undefined"){
+    return(
+<>
+
+      </>
+    )
+  } else {
+  
+
   return (
     <div className="py-5">
       <button className="btn-primary btn sm:w-[200px]" onClick={handleClick}>
@@ -27,4 +44,4 @@ export default function CheckOutButton({ cart, products }) {
       </button>
     </div>
   );
-}
+}}

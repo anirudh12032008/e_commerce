@@ -22,8 +22,8 @@ export default function PaginationBar({ currentPage, totalPages }) {
 
   return (
     <>
-      <div className="join hidden sm:block">{numberedPageItems}</div>
-      <div className="join block sm:hidden">
+      <div className="join sm:hidden block">{numberedPageItems}</div>
+      <div className="join sm:block hidden">
         {currentPage > 1 && (
           <Link href={"?page=" + (currentPage - 1)} className="join-item btn">
             «

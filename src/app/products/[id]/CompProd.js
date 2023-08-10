@@ -1,9 +1,5 @@
 "use client";
 import { useEffect } from "react";
-import Intro from "../../animation/Intro";
-import Description from "../../animation/Description";
-import Projects from "../../animation/Projects";
-import Shop from "../../animation/Shop";
 import AddToCartButton from "./AddToCartButton";
 import PriceTag from "@/components/PriceTag";
 import Image from "next/image";

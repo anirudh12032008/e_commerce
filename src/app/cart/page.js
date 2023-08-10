@@ -15,7 +15,10 @@ export default async function CartPage() {
   const cart = await getCart();
 
   return (
+    <div className="h-[90vh]">
+
     <CompCart cart={cart} />
+     </div>
     // <div>
     //   <h1 className="mb-6 text-3xl font-bold">Shopping Cart      use 424242.... for card no. and any future date for card and any cvc</h1>
     //   {cart?.items.map((cartItem) => (

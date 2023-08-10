@@ -5,10 +5,12 @@ import Home1 from "@/components/Home1";
 
 import { prisma } from "@/lib/db/prisma";
 export default async function Home({ searchParams: { page = "1" } }) {
+  
   const currentPage = parseInt(page);
 
-  const pageSize = 6;
-  const heroItemCount = 1;
+  const pageSize = 8;
+ 
+  const heroItemCount = 0;
 
   const totalItemCount = await prisma.product.count();
 
@@ -23,22 +25,25 @@ export default async function Home({ searchParams: { page = "1" } }) {
 
   return (
     <>
-    <div className="">
-      <Home1/>
-    </div>
-    <div className="flex test123 flex-col items-center">
-      {/* {currentPage === 1 && <HeroProduct products={products[0]} />} */}
-
-      <div id="prod" className="my-4 grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-4 ">
-        {(currentPage === 1 ? products.slice(1) : products).map((product) => (
-          <ProductCard product={product} key={product.id} />
-        ))}
+      <div className="">
+        <Home1 />
       </div>
+      <div className="flex test123 mx-5 flex-col items-center">
+        {/* {currentPage === 1 && <HeroProduct products={products[0]} />} */}
 
-      {totalPages > 1 && (
-        <PaginationBar currentPage={currentPage} totalPages={totalPages} />
+        <div
+          id="prod"
+          className="my-4 grid sm:grid-cols-1 md:grid-cols-2 gap-6 lg:grid-cols-3 grid-cols-4 "
+        >
+          {(currentPage === 1 ? products.slice(0) : products).map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </div>
+
+        {totalPages > 1 && (
+          <PaginationBar currentPage={currentPage} totalPages={totalPages} />
         )}
-    </div>
-        </>
+      </div>
+    </>
   );
 }

@@ -22,12 +22,12 @@ const CompCart = (props) => {
             setProductQuantity={setProductQuantity}
           />
         ))}
-        {!props.cart?.items.length && <p>Your cart is empty.</p>}
+        {!props.cart?.items.length && <p></p>}
         <div className="flex flex-col items-end sm:items-center">
           <p className="mb-3 font-bold">
             Total: {formatPrice(props.cart?.subtotal || 0)}
           </p>
-          <CheckOutButton cart={props.cart} products={props.cart.items} />
+          <CheckOutButton cart={props.cart} products={props.cart?.items} />
           <ClearCart clearCart={clearCart} cart={props.cart} />
         </div>
       </div>

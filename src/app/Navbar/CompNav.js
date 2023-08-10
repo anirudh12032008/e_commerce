@@ -26,7 +26,7 @@ const CompNav = (params) => {
         exit={{ y: -100 }} // Exit animation when the component is unmounted (optional)
         transition={{ duration: 1.2 }}
       >
-        <div className="navbar m-auto max-w-7xl flex-col gap-2 sm:flex-row">
+        <div className="navbar m-auto max-w-7xl sm:flex-col gap-2 flex-row">
           <div className="flex-1">
             <Link href="/" className="btn-ghost btn text-xl normal-case">
               <Image
