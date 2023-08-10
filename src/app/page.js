@@ -1,6 +1,8 @@
 import HeroProduct from "@/components/HeroProduct";
 import PaginationBar from "@/components/PaginationBar";
 import ProductCard from "@/components/ProductCard";
+import Home1 from "@/components/Home1";
+
 import { prisma } from "@/lib/db/prisma";
 export default async function Home({ searchParams: { page = "1" } }) {
   const currentPage = parseInt(page);
@@ -20,10 +22,14 @@ export default async function Home({ searchParams: { page = "1" } }) {
   });
 
   return (
+    <>
+    <div className="">
+      <Home1/>
+    </div>
     <div className="flex test123 flex-col items-center">
-      {currentPage === 1 && <HeroProduct products={products[0]} />}
+      {/* {currentPage === 1 && <HeroProduct products={products[0]} />} */}
 
-      <div className="my-4 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div id="prod" className="my-4 grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-4 ">
         {(currentPage === 1 ? products.slice(1) : products).map((product) => (
           <ProductCard product={product} key={product.id} />
         ))}
@@ -31,7 +37,8 @@ export default async function Home({ searchParams: { page = "1" } }) {
 
       {totalPages > 1 && (
         <PaginationBar currentPage={currentPage} totalPages={totalPages} />
-      )}
+        )}
     </div>
+        </>
   );
 }
