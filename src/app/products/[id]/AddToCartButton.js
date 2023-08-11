@@ -4,27 +4,63 @@ import { useState, useTransition } from "react";
 export default function AddToCartButton({
   productId,
   incrementProductQuantity,
-  className
+  className,
+  getProductDetails,
+  updateQuantity,
+  quantity1,
 }) {
+  let product = { quantity: 0 };
   const [isPending, startTransition] = useTransition();
   const [success, setSuccess] = useState(false);
+  const [quantity, setQuantity] = useState(quantity1);
+
+  const handleIncrement = () => {
+    setQuantity(quantity + 1);
+    updateQuantity(productId, quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+      updateQuantity(productId, quantity - 1);
+    }
+  };
 
   return (
     <div className="flex items-center gap-2">
+      <div className="my-1 flex items-center gap-2">
+        <button
+          className="bg-blue-500 text-white px-3 py-1 rounded-lg"
+          onClick={handleIncrement}
+        >
+          +
+        </button>
+        <div className="border-2 border-slate-600  text-black font-semibold px-3 py-1 rounded-lg">
+          {" "}
+          {quantity}
+        </div>
+        <button
+          className="bg-red-500 text-white px-3 py-1 rounded-lg"
+          onClick={handleDecrement}
+        >
+          -
+        </button>
+      </div>
       <button
-        className=" text-white  btn hover:bg-gray-900 bg-gray-950"
+        className="flex justify-center items-center border-cyan-400 border-solid border-2 rounded-full hover:bg-blue-500 hover:text-white  px-5 pb-2 pt-2.5 text-base  font-semibold uppercase leading-normal text-cyan-600  transition duration-150 ease-in-out bg-white shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
         onClick={() => {
           setSuccess(false);
           startTransition(async () => {
             await incrementProductQuantity(productId);
             setSuccess(true);
+            handleIncrement();
           });
         }}
       >
         Add to Cart
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
+          className="h-5 ml-2 w-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

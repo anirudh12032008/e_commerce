@@ -37,6 +37,23 @@ export async function getCart() {
   };
 }
 
+
+
+export async function getProductDetails(productId) {
+  const cartItem = await prisma.cartItem.findFirst({
+    where: {
+      productId,
+    },
+    include: {
+      product: true,
+    },
+  });
+
+  return cartItem;
+}
+
+
+
 export async function createCart() {
   const session = await getServerSession(authOptions);
 

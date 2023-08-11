@@ -25,6 +25,7 @@ const CompNav = (params) => {
         animate={{ y: 0 }} // Target position, sliding into view from the top
         exit={{ y: -100 }} // Exit animation when the component is unmounted (optional)
         transition={{ duration: 1.2 }}
+        className="bg-slate-300 rounded-xl"
       >
         <div className="navbar m-auto max-w-7xl sm:flex-col gap-2 flex-row">
           <div className="flex-1">

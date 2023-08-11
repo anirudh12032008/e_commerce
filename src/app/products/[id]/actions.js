@@ -37,3 +37,28 @@ export async function incrementProductQuantity(productId) {
 
   revalidatePath("/products/[id]");
 }
+
+export async function getProductQuantity(productId) {
+   const cartItems = await prisma.cartItem.findMany({
+    where: {
+      productId,
+    },
+  });
+
+  const totalQuantity = cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0);
+  return totalQuantity;}
+
+
+export async function getProductDetails(productId) {
+    
+  const cartItem = await prisma.cartItem.findFirst({
+    where: {
+      productId,
+    },
+    include: {
+      product: true,
+    },
+  });
+
+  return cartItem;
+}

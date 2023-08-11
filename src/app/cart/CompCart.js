@@ -11,10 +11,8 @@ const CompCart = (props) => {
   return (
     <div>
       <div>
-        <h1 className="mb-6 text-3xl font-bold">
-          Shopping Cart use 424242.... for card no. and any future date for card
-          and any cvc
-        </h1>
+        {/* use 424242.... for card no. and any future date for card and any cvc */}
+        <h1 className="mb-6 text-center text-5xl font-bold">Shopping Cart</h1>
         {props.cart?.items.map((cartItem) => (
           <CartEntry
             cartItem={cartItem}
@@ -23,7 +21,7 @@ const CompCart = (props) => {
           />
         ))}
         {!props.cart?.items.length && <p></p>}
-        <div className="flex flex-col items-end sm:items-center">
+        <div className="flex flex-col  items-center">
           <p className="mb-3 font-bold">
             Total: {formatPrice(props.cart?.subtotal || 0)}
           </p>

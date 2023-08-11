@@ -15,27 +15,9 @@ export default async function CartPage() {
   const cart = await getCart();
 
   return (
-    <div className="h-[90vh]">
+    <div className="min-h-[90vh] my-5">
 
     <CompCart cart={cart} />
      </div>
-    // <div>
-    //   <h1 className="mb-6 text-3xl font-bold">Shopping Cart      use 424242.... for card no. and any future date for card and any cvc</h1>
-    //   {cart?.items.map((cartItem) => (
-    //     <CartEntry
-    //       cartItem={cartItem}
-    //       key={cartItem.id}
-    //       setProductQuantity={setProductQuantity}
-    //     />
-    //   ))}
-    //   {!cart?.items.length && <p>Your cart is empty.</p>}
-    //   <div className="flex flex-col items-end sm:items-center">
-    //     <p className="mb-3 font-bold">
-    //       Total: {formatPrice(cart?.subtotal || 0)}
-    //     </p>
-    //     <CheckOutButton cart={cart} products={cart.items} />
-    //     <ClearCart clearCart={clearCart} cart={cart} />
-    //   </div>
-    // </div>
   );
 }
