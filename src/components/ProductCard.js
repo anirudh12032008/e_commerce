@@ -3,11 +3,19 @@ import Link from "next/link";
 import PriceTag from "./PriceTag";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { incrementProductQuantity } from "../app/products/[id]/actions";
+import TypedText from "./TypeText";
 
 
 export default function ProductCard({ product }) {
+   useEffect(() => {
+     (async () => {
+       const LocomotiveScroll = (await import("locomotive-scroll")).default;
+       const locomotiveScroll = new LocomotiveScroll();
+     })();
+   }, []);
+
   const isNew =
     Date.now() - new Date(product.createdAt).getTime() <
     1000 * 60 * 60 * 24 * 7;
@@ -37,14 +45,29 @@ export default function ProductCard({ product }) {
         </Link>
         <div className="flex flex-col px-7   py-2">
           <Link href={"/products/" + product.id}>
-            <h2 className="card-title ">{product.name}</h2>
-            <PriceTag
-              className={"font-bold text-cyan-600"}
-              price={product.price}
-            />
+            <h2 className="card-title ">
+              <TypedText d={2} text={product.name} />
+            </h2>
+            <motion.div
+              initial={{ opacity: 0 }} // Start position
+              whileInView={{ opacity: 1 }} // End position
+              transition={{ delay: 1, duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <PriceTag
+                className={"font-bold text-cyan-600"}
+                price={product.price}
+              />
+            </motion.div>
           </Link>
         </div>
-        <div className="absolute bottom-0 flex right-0  bg-blue-200 p-2 mr-5 mb-3 rounded-full">
+        <motion.div
+          initial={{ opacity: 0 }} // Start position
+          whileInView={{ opacity: 1 }} // End position
+          transition={{ delay: 1.4, duration: 1 }}
+          viewport={{ once: true }}
+          className="absolute bottom-0 flex right-0  bg-blue-200 p-2 mr-5 mb-3 rounded-full"
+        >
           <button
             onClick={() => {
               setSuccess(false);
@@ -69,10 +92,10 @@ export default function ProductCard({ product }) {
               />
             </svg>
           </button>
-        {!isPending && success && (
-          <span className="text-success text-xs ">Added to Cart.</span>
-        )}
-        </div>
+          {!isPending && success && (
+            <span className="text-success text-xs ">Added to Cart.</span>
+          )}
+        </motion.div>
       </div>
     </motion.div>
   );

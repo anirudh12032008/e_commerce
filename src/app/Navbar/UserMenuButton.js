@@ -39,11 +39,11 @@ export default function UserMenuButton({ session }) {
       >
         <li>
           {user ? (
-            <button onClick={() => signOut({ callbackUrl: "/" })}>
+            <button className="text-black" onClick={() => signOut({ callbackUrl: "/" })}>
               Sign Out
             </button>
           ) : (
-            <button onClick={() => signIn()}>Sign In</button>
+            <button className="text-black" onClick={() => signIn()}>Sign In</button>
           )}
         </li>
       </ul>

@@ -12,7 +12,7 @@ export default function AddToCartButton({
   let product = { quantity: 0 };
   const [isPending, startTransition] = useTransition();
   const [success, setSuccess] = useState(false);
-  const [quantity, setQuantity] = useState(quantity1);
+  const [quantity, setQuantity] = useState(quantity1 );
 
   const handleIncrement = () => {
     setQuantity(quantity + 1);

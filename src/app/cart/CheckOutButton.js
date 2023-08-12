@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import getStipePromise from "../../lib/stripe";
 
 export default function CheckOutButton({ cart, products }) {
@@ -38,10 +39,17 @@ export default function CheckOutButton({ cart, products }) {
   
 
   return (
-    <div className="py-5">
-      <button className="btn-primary btn sm:w-[200px]" onClick={handleClick}>
+    <>
+      <motion.button
+        initial={{ opacity: 0, y: -100 }} // Start position
+        whileInView={{ opacity: 1, y: 0 }} // End position
+        transition={{ delay: 0.3, duration: 0.3 }}
+        viewport={{ once: true }}
+        className="btn-primary w-4/12 mb-3 btn sm:w-[200px]"
+        onClick={handleClick}
+      >
         Check out
-      </button>
-    </div>
+      </motion.button>
+    </>
   );
 }}

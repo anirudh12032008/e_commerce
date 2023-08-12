@@ -3,11 +3,11 @@ import PaginationBar from "@/components/PaginationBar";
 import ProductCard from "@/components/ProductCard";
 import Home1 from "@/components/Home1";
 
+
 import { prisma } from "@/lib/db/prisma";
 export default async function Home({ searchParams: { page = "1" } }) {
   
   const currentPage = parseInt(page);
-
   const pageSize = 8;
  
   const heroItemCount = 0;
@@ -47,3 +47,4 @@ export default async function Home({ searchParams: { page = "1" } }) {
     </>
   );
 }
+

@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import React, { useTransition } from "react";
 
@@ -29,18 +30,23 @@ Start Shopping          </button>
       </>
     );
   } else {
+    
     return (
       <>
-        <button
+        <motion.button
+          initial={{ opacity: 0, y: -100 }} // Start position
+          whileInView={{ opacity: 1, y: 0 }} // End position
+          transition={{ delay: 0.9, duration: 0.3 }}
+          viewport={{ once: true }}
           onClick={() => {
             startTransition(async () => {
               await props.clearCart();
             });
           }}
-          className="btn-error mt-5 btn sm:w-[200px]"
+          className="btn-error w-4/12 mt-1 btn sm:w-[200px]"
         >
           Clear Cart
-        </button>
+        </motion.button>
       </>
     );
   }

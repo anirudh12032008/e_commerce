@@ -1,5 +1,7 @@
 "use client";
+import TypedText from "@/components/TypeText";
 import { formatPrice } from "@/lib/format";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useTransition } from "react";
@@ -18,20 +20,26 @@ export default function CartEntry({
       </option>
     );
   }
+  
 
   return (
-    <div>
-      <div className="flex flex-wrap items-center gap-3">
+    <motion.div
+      initial={{ opacity: 0, x: -100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
+      <div className="flex   xs:items-start md:ml-12 sm:ml-10 flex-wrap ml-16 items-center gap-3">
         <Image
           src={product.imageUrl}
           alt={product.name}
-          width={200}
-          height={200}
+          width={170}
+          height={170}
           className="rounded-lg"
         />
-        <div>
+        <div className="ml-4">
           <Link href={"/products/" + product.id} className="font-bold">
-            {product.name}
+            <TypedText text={product.name} d={0.4}/>
           </Link>
           <div>Price: {formatPrice(product.price)}</div>
           <div className="my-1 flex items-center gap-2">
@@ -59,6 +67,6 @@ export default function CartEntry({
         </div>
       </div>
       <div className="divider" />
-    </div>
+    </motion.div>
   );
 }

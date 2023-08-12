@@ -45,8 +45,15 @@ export default async function ProductPage({ params: { id } }) {
 
   const product = await getProduct(id);
   const cart = await getCart();
+  let cid;
+  if ( cart == null) {
+    cid = 0;
+  }else{
+
+    cid = cart.id
+  }
   // const quantity = await getProductDetails(id);
-        const quantity = await getProductQuantity(id);
+        const quantity = await getProductQuantity(id,cid);
 
        
   return (

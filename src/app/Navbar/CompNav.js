@@ -21,11 +21,10 @@ const CompNav = (params) => {
   return (
     <div>
       <motion.div
-        initial={{ y: -100 }} // Initial position, off-screen at the top
-        animate={{ y: 0 }} // Target position, sliding into view from the top
-        exit={{ y: -100 }} // Exit animation when the component is unmounted (optional)
-        transition={{ duration: 1.2 }}
-        className="bg-slate-300 rounded-xl"
+        initial={{ opacity:0 }} // Initial position, off-screen at the top
+        animate={{ opacity:1 }} // Target position, sliding into view from the top
+        transition={{ duration: 0.8 }}
+        className="bg-gradient-to-r from-blue-400 to-purple-500 text-white"
       >
         <div className="navbar m-auto max-w-7xl sm:flex-col gap-2 flex-row">
           <div className="flex-1">

@@ -9,13 +9,18 @@ const stripe = new Stripe(key, {
 });
 
 export async function POST(request) {
+  const uuid = require("uuid");
+
+  // Generate a unique UUID for client_reference_id
+  const uniqueId = uuid.v4();
   const body = await request.json();
   try {
     if (body.length > 0) {
       const session = await stripe.checkout.sessions.create({
-        submit_type: "pay",
+      submit_type: "pay",
         mode: "payment",
-        billing_address_collection: "auto",
+        billing_address_collection: "required",
+        client_reference_id: uniqueId,
         invoice_creation: {
           enabled: true,
         },
@@ -25,15 +30,15 @@ export async function POST(request) {
               currency: "inr",
               product_data: {
                 name: item.product.name,
-                images: [item.product.imageUrl]
+                images: [item.product.imageUrl],
               },
-              unit_amount: item.product.price ,
+              unit_amount: item.product.price,
             },
             quantity: item.quantity,
             adjustable_quantity: {
               enabled: true,
               minimum: 1,
-              maximum: 10,
+              maximum: 30,
             },
           };
         }),
