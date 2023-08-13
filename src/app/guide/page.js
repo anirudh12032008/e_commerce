@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import img from '../../assets/guide.png'
+import img from '../../assets/guide.PNG'
 import Link from 'next/link'
 
 const page = () => {
