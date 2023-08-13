@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/logo.png";
 import { getCart } from "@/lib/db/cart";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
